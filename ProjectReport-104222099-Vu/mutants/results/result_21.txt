@@ -1,0 +1,8 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.4, pytest-8.2.0, pluggy-1.5.0
+rootdir: /Users/vufanity/SWINBURNE MATERIALS/SWE30009/ProjectReport-104222099-Vu
+collected 7 items
+
+mutants/test_counting_sort_mutant_21.py .......                          [100%]
+
+============================== 7 passed in 0.01s ===============================

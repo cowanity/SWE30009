@@ -1,0 +1,156 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.4, pytest-8.2.0, pluggy-1.5.0
+rootdir: /Users/vufanity/SWE30009/Project Report
+collected 7 items
+
+mutants/test_counting_sort_mutant_16.py FF.F...                          [100%]
+
+=================================== FAILURES ===================================
+____________________ TestCountingSort.test_all_same_numbers ____________________
+
+self = <test_counting_sort_mutant_16.TestCountingSort testMethod=test_all_same_numbers>
+
+    def test_all_same_numbers(self):
+>       self.assertEqual(counting_sort([5, 5, 5, 5]), [5, 5, 5, 5])
+
+mutants/test_counting_sort_mutant_16.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+collection = [5, 5, 5, 5]
+
+    def counting_sort(collection):
+        """Pure implementation of counting sort algorithm in Python
+        :param collection: some mutable ordered collection with heterogeneous
+        comparable items inside
+        :return: the same collection ordered by ascending
+        Examples:
+        >>> counting_sort([0, 5, 3, 2, 2])
+        [0, 2, 2, 3, 5]
+        >>> counting_sort([])
+        []
+        >>> counting_sort([-2, -5, -45])
+        [-45, -5, -2]
+        """
+        # if the collection is empty, returns empty
+        if collection == []:
+            return []
+    
+        # get some information about the collection
+        coll_len = len(collection)
+        coll_max = max(collection)
+        coll_min = min(collection)
+    
+        # create the counting array
+        counting_arr_length = coll_max + 1 - coll_min
+        counting_arr = [0] * counting_arr_length
+    
+        # count how much a number appears in the collection
+        for number in collection:
+            # Introducing a small, conditional defect
+            if number == 7:
+                counting_arr[number - coll_min] -= 1
+            else:
+                counting_arr[number - coll_min] += 1
+    
+        # sum each position with its predecessors. now, counting_arr[i] tells
+        # us how many elements <= i has in the collection
+        for i in range(1, counting_arr_length):
+            counting_arr[i] = counting_arr[i] + counting_arr[i - 1]
+    
+        # create the output collection
+        ordered = [0] * coll_len
+    
+        # place the elements in the output, respecting the original order (stable
+        # sort) from end to begin, updating counting_arr
+        for i in reversed(range(coll_len)):
+>           ordered[counting_arr[collection[i] - coll_min] - 1] = collection[i]
+E           IndexError: list assignment index out of range
+
+mutants/counting_sort_mutant_16.py:57: IndexError
+__________________ TestCountingSort.test_basic_functionality ___________________
+
+self = <test_counting_sort_mutant_16.TestCountingSort testMethod=test_basic_functionality>
+
+    def test_basic_functionality(self):
+>       self.assertEqual(counting_sort([4, 2, 5, 2, 3]), [2, 2, 3, 4, 5])
+E       AssertionError: Lists differ: [0, 2, 2, 4, 5] != [2, 2, 3, 4, 5]
+E       
+E       First differing element 0:
+E       0
+E       2
+E       
+E       - [0, 2, 2, 4, 5]
+E       ?  ---
+E       
+E       + [2, 2, 3, 4, 5]
+E       ?        +++
+
+mutants/test_counting_sort_mutant_16.py:7: AssertionError
+__________________ TestCountingSort.test_element_duplication ___________________
+
+self = <test_counting_sort_mutant_16.TestCountingSort testMethod=test_element_duplication>
+
+    def test_element_duplication(self):
+        original = [1, 2, 3]
+        duplicated = original * 2  # Duplicate elements
+>       self.assertEqual(counting_sort(duplicated), [1, 1, 2, 2, 3, 3])
+
+mutants/test_counting_sort_mutant_16.py:21: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+collection = [1, 2, 3, 1, 2, 3]
+
+    def counting_sort(collection):
+        """Pure implementation of counting sort algorithm in Python
+        :param collection: some mutable ordered collection with heterogeneous
+        comparable items inside
+        :return: the same collection ordered by ascending
+        Examples:
+        >>> counting_sort([0, 5, 3, 2, 2])
+        [0, 2, 2, 3, 5]
+        >>> counting_sort([])
+        []
+        >>> counting_sort([-2, -5, -45])
+        [-45, -5, -2]
+        """
+        # if the collection is empty, returns empty
+        if collection == []:
+            return []
+    
+        # get some information about the collection
+        coll_len = len(collection)
+        coll_max = max(collection)
+        coll_min = min(collection)
+    
+        # create the counting array
+        counting_arr_length = coll_max + 1 - coll_min
+        counting_arr = [0] * counting_arr_length
+    
+        # count how much a number appears in the collection
+        for number in collection:
+            # Introducing a small, conditional defect
+            if number == 7:
+                counting_arr[number - coll_min] -= 1
+            else:
+                counting_arr[number - coll_min] += 1
+    
+        # sum each position with its predecessors. now, counting_arr[i] tells
+        # us how many elements <= i has in the collection
+        for i in range(1, counting_arr_length):
+            counting_arr[i] = counting_arr[i] + counting_arr[i - 1]
+    
+        # create the output collection
+        ordered = [0] * coll_len
+    
+        # place the elements in the output, respecting the original order (stable
+        # sort) from end to begin, updating counting_arr
+        for i in reversed(range(coll_len)):
+>           ordered[counting_arr[collection[i] - coll_min] - 1] = collection[i]
+E           IndexError: list assignment index out of range
+
+mutants/counting_sort_mutant_16.py:57: IndexError
+=========================== short test summary info ============================
+FAILED mutants/test_counting_sort_mutant_16.py::TestCountingSort::test_all_same_numbers
+FAILED mutants/test_counting_sort_mutant_16.py::TestCountingSort::test_basic_functionality
+FAILED mutants/test_counting_sort_mutant_16.py::TestCountingSort::test_element_duplication
+========================= 3 failed, 4 passed in 0.02s ==========================

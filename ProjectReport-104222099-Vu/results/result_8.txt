@@ -1,0 +1,106 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.4, pytest-8.2.0, pluggy-1.5.0
+rootdir: /Users/vufanity/SWE30009/Project Report
+collected 7 items
+
+mutants/test_counting_sort_mutant_8.py .FFF.FF                           [100%]
+
+=================================== FAILURES ===================================
+__________________ TestCountingSort.test_basic_functionality ___________________
+
+self = <test_counting_sort_mutant_8.TestCountingSort testMethod=test_basic_functionality>
+
+    def test_basic_functionality(self):
+>       self.assertEqual(counting_sort([4, 2, 5, 2, 3]), [2, 2, 3, 4, 5])
+E       AssertionError: Lists differ: [2, 4, 0, 5, 0] != [2, 2, 3, 4, 5]
+E       
+E       First differing element 1:
+E       4
+E       2
+E       
+E       - [2, 4, 0, 5, 0]
+E       + [2, 2, 3, 4, 5]
+
+mutants/test_counting_sort_mutant_8.py:7: AssertionError
+______________ TestCountingSort.test_concatenation_sorted_arrays _______________
+
+self = <test_counting_sort_mutant_8.TestCountingSort testMethod=test_concatenation_sorted_arrays>
+
+    def test_concatenation_sorted_arrays(self):
+        sorted_a = [1, 2, 3]
+        sorted_b = [4, 5, 6]
+        concatenated_and_sorted = counting_sort(sorted_a + sorted_b)
+>       self.assertEqual(concatenated_and_sorted, sorted_a + sorted_b)
+E       AssertionError: Lists differ: [1, 0, 0, 0, 0, 2] != [1, 2, 3, 4, 5, 6]
+E       
+E       First differing element 1:
+E       0
+E       2
+E       
+E       - [1, 0, 0, 0, 0, 2]
+E       + [1, 2, 3, 4, 5, 6]
+
+mutants/test_counting_sort_mutant_8.py:33: AssertionError
+__________________ TestCountingSort.test_element_duplication ___________________
+
+self = <test_counting_sort_mutant_8.TestCountingSort testMethod=test_element_duplication>
+
+    def test_element_duplication(self):
+        original = [1, 2, 3]
+        duplicated = original * 2  # Duplicate elements
+>       self.assertEqual(counting_sort(duplicated), [1, 1, 2, 2, 3, 3])
+E       AssertionError: Lists differ: [1, 1, 0, 0, 2, 2] != [1, 1, 2, 2, 3, 3]
+E       
+E       First differing element 2:
+E       0
+E       2
+E       
+E       - [1, 1, 0, 0, 2, 2]
+E       + [1, 1, 2, 2, 3, 3]
+
+mutants/test_counting_sort_mutant_8.py:21: AssertionError
+____________________ TestCountingSort.test_negative_numbers ____________________
+
+self = <test_counting_sort_mutant_8.TestCountingSort testMethod=test_negative_numbers>
+
+    def test_negative_numbers(self):
+>       self.assertEqual(counting_sort([-2, -5, -45]), [-45, -5, -2])
+E       AssertionError: Lists differ: [-45, -2, 0] != [-45, -5, -2]
+E       
+E       First differing element 1:
+E       -2
+E       -5
+E       
+E       - [-45, -2, 0]
+E       + [-45, -5, -2]
+
+mutants/test_counting_sort_mutant_8.py:13: AssertionError
+_____________________ TestCountingSort.test_scale_elements _____________________
+
+self = <test_counting_sort_mutant_8.TestCountingSort testMethod=test_scale_elements>
+
+    def test_scale_elements(self):
+        original = [3, 1, 4, 1, 5]
+        scaled = [x * 2 for x in original]
+        expected = [x * 2 for x in counting_sort(original)]
+>       self.assertEqual(counting_sort(scaled), expected)
+E       AssertionError: Lists differ: [2, 2, 6, 8, 10] != [2, 2, 6, 0, 0]
+E       
+E       First differing element 3:
+E       8
+E       0
+E       
+E       - [2, 2, 6, 8, 10]
+E       ?           ^  -
+E       
+E       + [2, 2, 6, 0, 0]
+E       ?           ^
+
+mutants/test_counting_sort_mutant_8.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED mutants/test_counting_sort_mutant_8.py::TestCountingSort::test_basic_functionality
+FAILED mutants/test_counting_sort_mutant_8.py::TestCountingSort::test_concatenation_sorted_arrays
+FAILED mutants/test_counting_sort_mutant_8.py::TestCountingSort::test_element_duplication
+FAILED mutants/test_counting_sort_mutant_8.py::TestCountingSort::test_negative_numbers
+FAILED mutants/test_counting_sort_mutant_8.py::TestCountingSort::test_scale_elements
+========================= 5 failed, 2 passed in 0.02s ==========================

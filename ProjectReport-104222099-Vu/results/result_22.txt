@@ -1,0 +1,136 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.4, pytest-8.2.0, pluggy-1.5.0
+rootdir: /Users/vufanity/SWE30009/Project Report
+collected 7 items
+
+mutants/test_counting_sort_mutant_22.py FFFFFF.                          [100%]
+
+=================================== FAILURES ===================================
+____________________ TestCountingSort.test_all_same_numbers ____________________
+
+self = <test_counting_sort_mutant_22.TestCountingSort testMethod=test_all_same_numbers>
+
+    def test_all_same_numbers(self):
+>       self.assertEqual(counting_sort([5, 5, 5, 5]), [5, 5, 5, 5])
+E       AssertionError: Lists differ: [] != [5, 5, 5, 5]
+E       
+E       Second list contains 4 additional elements.
+E       First extra element 0:
+E       5
+E       
+E       - []
+E       + [5, 5, 5, 5]
+
+mutants/test_counting_sort_mutant_22.py:16: AssertionError
+__________________ TestCountingSort.test_basic_functionality ___________________
+
+self = <test_counting_sort_mutant_22.TestCountingSort testMethod=test_basic_functionality>
+
+    def test_basic_functionality(self):
+>       self.assertEqual(counting_sort([4, 2, 5, 2, 3]), [2, 2, 3, 4, 5])
+E       AssertionError: Lists differ: [] != [2, 2, 3, 4, 5]
+E       
+E       Second list contains 5 additional elements.
+E       First extra element 0:
+E       2
+E       
+E       - []
+E       + [2, 2, 3, 4, 5]
+
+mutants/test_counting_sort_mutant_22.py:7: AssertionError
+______________ TestCountingSort.test_concatenation_sorted_arrays _______________
+
+self = <test_counting_sort_mutant_22.TestCountingSort testMethod=test_concatenation_sorted_arrays>
+
+    def test_concatenation_sorted_arrays(self):
+        sorted_a = [1, 2, 3]
+        sorted_b = [4, 5, 6]
+        concatenated_and_sorted = counting_sort(sorted_a + sorted_b)
+>       self.assertEqual(concatenated_and_sorted, sorted_a + sorted_b)
+E       AssertionError: Lists differ: [] != [1, 2, 3, 4, 5, 6]
+E       
+E       Second list contains 6 additional elements.
+E       First extra element 0:
+E       1
+E       
+E       - []
+E       + [1, 2, 3, 4, 5, 6]
+
+mutants/test_counting_sort_mutant_22.py:33: AssertionError
+__________________ TestCountingSort.test_element_duplication ___________________
+
+self = <test_counting_sort_mutant_22.TestCountingSort testMethod=test_element_duplication>
+
+    def test_element_duplication(self):
+        original = [1, 2, 3]
+        duplicated = original * 2  # Duplicate elements
+>       self.assertEqual(counting_sort(duplicated), [1, 1, 2, 2, 3, 3])
+E       AssertionError: Lists differ: [] != [1, 1, 2, 2, 3, 3]
+E       
+E       Second list contains 6 additional elements.
+E       First extra element 0:
+E       1
+E       
+E       - []
+E       + [1, 1, 2, 2, 3, 3]
+
+mutants/test_counting_sort_mutant_22.py:21: AssertionError
+_______________________ TestCountingSort.test_empty_list _______________________
+
+self = <test_counting_sort_mutant_22.TestCountingSort testMethod=test_empty_list>
+
+    def test_empty_list(self):
+>       self.assertEqual(counting_sort([]), [])
+
+mutants/test_counting_sort_mutant_22.py:10: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+collection = []
+
+    def counting_sort(collection):
+        """Pure implementation of counting sort algorithm in Python
+        :param collection: some mutable ordered collection with heterogeneous
+        comparable items inside
+        :return: the same collection ordered by ascending
+        Examples:
+        >>> counting_sort([0, 5, 3, 2, 2])
+        [0, 2, 2, 3, 5]
+        >>> counting_sort([])
+        []
+        >>> counting_sort([-2, -5, -45])
+        [-45, -5, -2]
+        """
+        # if the collection is empty, returns empty
+        if collection != []:
+            return []
+    
+        # get some information about the collection
+        coll_len = len(collection)
+>       coll_max = max(collection)
+E       ValueError: max() arg is an empty sequence
+
+mutants/counting_sort_mutant_22.py:31: ValueError
+____________________ TestCountingSort.test_negative_numbers ____________________
+
+self = <test_counting_sort_mutant_22.TestCountingSort testMethod=test_negative_numbers>
+
+    def test_negative_numbers(self):
+>       self.assertEqual(counting_sort([-2, -5, -45]), [-45, -5, -2])
+E       AssertionError: Lists differ: [] != [-45, -5, -2]
+E       
+E       Second list contains 3 additional elements.
+E       First extra element 0:
+E       -45
+E       
+E       - []
+E       + [-45, -5, -2]
+
+mutants/test_counting_sort_mutant_22.py:13: AssertionError
+=========================== short test summary info ============================
+FAILED mutants/test_counting_sort_mutant_22.py::TestCountingSort::test_all_same_numbers
+FAILED mutants/test_counting_sort_mutant_22.py::TestCountingSort::test_basic_functionality
+FAILED mutants/test_counting_sort_mutant_22.py::TestCountingSort::test_concatenation_sorted_arrays
+FAILED mutants/test_counting_sort_mutant_22.py::TestCountingSort::test_element_duplication
+FAILED mutants/test_counting_sort_mutant_22.py::TestCountingSort::test_empty_list
+FAILED mutants/test_counting_sort_mutant_22.py::TestCountingSort::test_negative_numbers
+========================= 6 failed, 1 passed in 0.10s ==========================
